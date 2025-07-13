@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Registration</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(to right, #4062eb, #4062eb);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+        }
+
+        .register-container {
+            background: rgba(255, 255, 255, 0.12);
+            padding: 40px 50px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            width: 360px;
+            text-align: center;
+        }
+
+        h2 {
+            margin-bottom: 25px;
+            font-size: 26px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            text-align: left;
+            margin-bottom: 6px;
+            font-size: 14px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"] {
+            padding: 12px;
+            margin-bottom: 18px;
+            border: none;
+            border-radius: 6px;
+            font-size: 14px;
+            background-color: rgba(255, 255, 255, 0.85);
+            color: #333;
+        }
+
+        button {
+            padding: 12px;
+            background-color: #fff;
+            color: #4062eb;
+            font-size: 16px;
+            font-weight: bold;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #f2f2f2;
+        }
+
+        .back-link {
+            margin-top: 15px;
+            font-size: 14px;
+        }
+
+        .back-link a {
+            color: #fff;
+            text-decoration: underline;
+        }
+
+        .back-link a:hover {
+            color: #eee;
+        }
+    </style>
+</head>
+<body>
+
+<div class="register-container">
+    <h2>Register</h2>
+    <form method="POST">
+        {% csrf_token %}
+        <label for="username">Username:</label>
+        <input type="text" name="username" required>
+
+        <label for="email">Email:</label>
+        <input type="email" name="email" required>
+
+        <label for="password">Password:</label>
+        <input type="password" name="password" required>
+
+        <button type="submit">Register</button>
+    </form>
+    <div class="back-link">
+        <a href="{% url 'user_login' %}">login</a>
+    </div>
+</div>
+
+{% if error %}
+<script>
+    alert("{{ error }}");
+</script>
+{% endif %}
+
+</body>
+</html>

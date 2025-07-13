@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Product Form</title>
+</head>
+<body>
+    <h2>{{ form.instance.pk|yesno:"Edit Product,Add Product" }}</h2>
+<form method="post" style="max-width: 400px;">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Save</button>
+</form>
+<br>
+<a href="{% url 'admin_dashboard' %}">← Back to Dashboard</a>
+
+</body>
+</html>

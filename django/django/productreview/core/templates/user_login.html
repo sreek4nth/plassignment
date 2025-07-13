@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(to right, #00b4db, #0083b0);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+        }
+
+        .login-container {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 40px 50px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            width: 350px;
+            text-align: center;
+        }
+
+        h2 {
+            margin-bottom: 25px;
+            font-size: 26px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            text-align: left;
+            margin-bottom: 5px;
+            font-size: 14px;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            padding: 12px;
+            margin-bottom: 20px;
+            border: none;
+            border-radius: 6px;
+            font-size: 14px;
+            background-color: rgba(255, 255, 255, 0.8);
+            color: #333;
+        }
+
+        button {
+            padding: 12px;
+            background-color: #fff;
+            color: #0083b0;
+            font-size: 16px;
+            font-weight: bold;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #e0e0e0;
+        }
+
+        .back-link {
+            margin-top: 15px;
+            font-size: 14px;
+        }
+
+        .back-link a {
+            color: #fff;
+            text-decoration: underline;
+        }
+
+        .back-link a:hover {
+            color: #ddd;
+        }
+    </style>
+</head>
+<body>
+
+<div class="login-container">
+    <h2>Login</h2>
+
+    {% if error %}
+    <script>alert("{{ error }}");</script>
+    {% endif %}
+
+    <form method="POST">
+        {% csrf_token %}
+        <input type="hidden" name="next" value="{{ next|default:'' }}">
+
+        <label for="username">Username:</label>
+        <input type="text" name="username" required>
+
+        <label for="password">Password:</label>
+        <input type="password" name="password" required>
+
+        <button type="submit">Login</button>
+    </form>
+    <div class="back-link">
+        <a href="{% url 'register_user' %}">if you are not registered?</a>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Dashboard</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(to right, #dfe9f3, #ffffff);
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 60px auto;
+            background: #fff;
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 35px;
+        }
+
+        .add-button {
+            display: inline-block;
+            padding: 12px 20px;
+            background-color: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: background 0.3s ease, transform 0.2s ease;
+        }
+
+        .add-button:hover {
+            background-color: #2980b9;
+            transform: scale(1.02);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 30px;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 16px;
+            border-bottom: 1px solid #eee;
+        }
+
+        th {
+            background-color: #f5f6fa;
+            color: #333;
+        }
+
+        tr:hover {
+            background-color: #f9fcff;
+        }
+
+        .action-links a {
+            margin-right: 12px;
+            color: #3498db;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .action-links a:hover {
+            color: #1d6fa5;
+            text-decoration: underline;
+        }
+
+        .footer {
+            text-align: center;
+            font-size: 14px;
+            color: #777;
+            margin-top: 40px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+                margin: 20px;
+            }
+
+            th, td {
+                padding: 10px;
+            }
+
+            .add-button {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Admin Dashboard</h1>
+
+        <a href="{% url 'create_product' %}" class="add-button">➕ Add New Product</a>
+        
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Price (₹)</th>
+                <th>Actions</th>
+            </tr>
+            {% for product in products %}
+            <tr>
+                <td>{{ product.name }}</td>
+                <td>{{ product.description }}</td>
+                <td>{{ product.price }}</td>
+                <td class="action-links">
+                    <a href="{% url 'update_product' product.id %}">✏️ Edit</a>
+                    <a href="{% url 'delete_product' product.id %}">🗑️ Delete</a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="4" style="text-align:center; color: #888;">No products available.</td>
+            </tr>
+            {% endfor %}
+        </table>
+
+        <div class="footer">
+          
+        </div>
+    </div>
+
+</body>
+</html>

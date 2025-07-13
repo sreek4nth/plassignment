@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Delete Product</title>
+    <style>
+        body {
+            background: #f6f6f6;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .confirm-box {
+            background: #fff;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+            width: 90%;
+            max-width: 500px;
+            text-align: center;
+        }
+
+        h2 {
+            color: #e74c3c;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 16px;
+            color: #444;
+            margin-bottom: 30px;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn-delete {
+            background-color: #e74c3c;
+            color: white;
+        }
+
+        .btn-delete:hover {
+            background-color: #c0392b;
+        }
+
+        .btn-cancel {
+            background-color: #bdc3c7;
+            color: #2c3e50;
+        }
+
+        .btn-cancel:hover {
+            background-color: #95a5a6;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="confirm-box">
+        <h2>Confirm Delete</h2>
+        <p>Are you sure you want to delete the product "<strong>{{ product.name }}</strong>"?</p>
+
+        <form method="post" class="buttons">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-delete">Yes, Delete</button>
+            <a href="{% url 'admin_dashboard' %}" class="btn btn-cancel">Cancel</a>
+        </form>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Confirm Delete</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .warning { color: red; font-weight: bold; }
+        button { background-color: red; color: white; padding: 8px 12px; border: none; cursor: pointer; }
+        a { margin-left: 10px; color: blue; text-decoration: none; }
+    </style>
+</head>
+<body>
+    <h2 class="warning">Are you sure you want to delete "{{ product.name }}"?</h2>
+    
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Yes, delete</button>
+        <a href="{% url 'admin_dashboard' %}">Cancel</a>
+    </form>
+</body>
+</html>
